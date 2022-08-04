@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-item">
+    <img width="223" height="66" src="../assets/images/pressdots_logo.png" />
+  </a>
+
+  <ul class="nav nav-pills">
+    <li><a class="nav-link" [routerLink]="['/welcome']">Home</a></li>
+    <li *ngIf="isAdmin && isLogin">
+      <a class="nav-link" [routerLink]="['/customer']">Users</a>
+    </li>
+    <li *ngIf="isAdmin && isLogin">
+      <a class="nav-link" [routerLink]="['/saloonlist']">Saloons</a>
+    </li>    
+    <li *ngIf="isAdmin && isLogin">
+      <a class="nav-link" [routerLink]="['/laboratorylist']">Laboratory</a>
+    </li>
+    <li *ngIf="isCustomer">
+      <a class="nav-link" [routerLink]="['/patientdashboard']">Appointment</a>
+    </li>
+    <li *ngIf="isSaloonAdmin">
+      <a class="nav-link" [routerLink]="['/bookedappointment']">Pending Appointments</a>
+    </li>
+    <li *ngIf="!isLogin">
+      <a class="nav-link" [routerLink]="['/registration']">Register</a>
+    </li>
+    <li *ngIf="!isLogin">
+      <a class="nav-link" [routerLink]="['/signin']">Login</a>
+    </li>
+    <li *ngIf="isLogin && isDentist">
+      <a class="nav-link" [routerLink]="['/order']">Order</a>
+    </li>
+    <li *ngIf="isAdmin && isLogin">
+      <a class="nav-link" [routerLink]="['/location']">Location</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto"></ul>
+  <div class="dropdown">
+    <button class="dropbtn">{{ userName }}</button>
+    <div class="dropdown-content">
+    <a [routerLink]="['/changepassword']">Change Password</a>
+    <a (click)="onLogout()">Log out</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+  <pd-loader></pd-loader>
+</div>
+<footer class="footer"></footer>

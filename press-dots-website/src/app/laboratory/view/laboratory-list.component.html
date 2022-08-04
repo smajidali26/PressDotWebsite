@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <div class="card-body">
+    <br />
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-secondary" (click)="addLaboratory()">
+          Create Laboratory
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table" *ngIf="laboratories && laboratories.length">
+        <thead>
+          <tr>
+            <th>Laboratory Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let laboratory of laboratories">
+            <td>{{ laboratory.laboratoryName }}</td>
+            <td>
+              <a routerLink="/editLaboratory/{{laboratory.id }}"
+              ><i class="fa fa-pencil-square-o"></i
+            ></a>
+            |<a (click)="DeleteLaboratory(laboratory.id)"
+              ><i class="fa fa-trash-o fa-fw"></i
+            ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

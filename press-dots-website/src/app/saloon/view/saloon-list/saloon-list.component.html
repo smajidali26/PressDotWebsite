@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <div class="card-body">
+    <br />
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-secondary" (click)="createNewSaloon()">
+          Create Saloon
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table" *ngIf="saloons && saloons.length">
+        <thead>
+          <tr>
+            <th>Saloon name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Country</th>
+            <th>City</th>
+
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of saloons">
+            <td>{{ s.saloonName }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.country.locationName }}</td>
+            <td>{{ s.city.locationName }}</td>
+            <td>
+              <a routerLink="/editSaloon/{{ s.id }}"
+                ><i class="fa fa-pencil-square-o"></i
+              ></a>
+              |<a (click)="DeleteSaloon(s.id)"
+                ><i class="fa fa-trash-o fa-fw"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-danger">{{ errorMessage }}</div>
+  </div>
+</div>

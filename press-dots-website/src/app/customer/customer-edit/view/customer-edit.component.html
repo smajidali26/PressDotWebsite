@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <form [formGroup]="customerEditForm" (ngSubmit)="onSubmit()"> 
+  <div class="card-body">
+    <div class="row">     
+        <div class="form-group col-md-5">
+          <label>First Name</label>
+          <input [class.is-invalid]="firstname.invalid && firstname.touched" formControlName="firstname" type="text"
+            class="form-control" />
+          <div *ngIf="firstname.invalid && firstname.touched">
+            <small *ngIf="firstname.errors?.required" class="text-danger">First name is required</small>
+            <small *ngIf="firstname.errors?.minlength" class="text-danger">First name must be at least 3 character</small>
+          </div>
+        </div>
+        <div class="form-group col-md-5">
+          <label>Last Name</label>
+          <input [class.is-invalid]="lastname.invalid && lastname.touched" formControlName="lastname" type="text"
+            class="form-control" />
+          <div *ngIf="lastname.invalid && lastname.touched">
+            <small *ngIf="lastname.errors?.required" class="text-danger">Last name is required</small>
+            <small *ngIf="lastname.errors?.minlength" class="text-danger">Last name must be at least 3 character</small>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-5">
+          <label>Email</label>
+          <input formControlName="email" type="text" class="form-control" />
+          <div *ngIf="email.invalid && email.touched">
+            <small *ngIf="email.errors?.email" class="text-danger">
+              Email must be a valid email address
+            </small>
+          </div>
+        </div>
+        <div class="form-group col-md-5">
+          <label>Phone</label>
+          <input formControlName="mobileNumber" type="text" class="form-control" />
+        </div>   
+      </div>    
+      <div class="row">
+        <div class="form-group col-md-5">
+          <label>Active</label>
+          <input
+            type="checkbox"
+            class="form-control"
+            style="width: 20px; height: 20px"
+            formControlName="isActive"
+          />
+        </div>
+          <div class="form-group col-md-5" *ngIf="isDentistRole">
+            <label>Role</label>
+            <select class="form-control" formControlName="roles">
+              <option value="">Select Role</option>
+              <option *ngFor="let c of roleList" [ngValue]="c.id">
+                {{ c.userRoleName }}
+              </option>
+            </select>
+            <div *ngIf="roles.invalid && roles.touched">
+              <small *ngIf="roles.errors?.required" class="text-danger"
+                >please select role</small
+              >
+            </div>
+          </div>
+      </div>
+        <div class="row">          
+          <div style="padding: 0px 0px 10px 15px">
+          <button class="btn btn-primary mr-1" [disabled]="!customerEditForm.valid" type="submit">
+            Save
+          </button>
+        </div>
+        </div>
+  </div>
+        </form>
+      <div style="padding-left: 10px;" class="text-danger">{{ errorMessage }}</div><br>
+</div>

@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div *ngIf="successMessage">
+    <h3>Activation Successful</h3>
+    <p>
+      Your account has been activated. You can now signin click here
+      <a class="link" [routerLink]="['../signin']">Sign In</a>
+    </p>
+  </div>
+  <div class="text-danger">{{ errorMessage }}</div>
+</div>

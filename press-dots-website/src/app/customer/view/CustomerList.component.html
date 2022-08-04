@@ -1,0 +1,85 @@
+<style>
+  .active a {
+    color: #8224e3 !important;
+  }
+  .page-link {
+    color: #8224e3 !important;
+  }
+</style>
+
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <div class="card-body">
+    <br />
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-secondary" (click)="addUser()">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+          Add User
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table" *ngIf="customers && customers.length">
+        <thead>
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Mobile number</th>
+            <th>Role</th>
+            <th>Active</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of filteredCustomers">
+            <td>{{ customer.firstname }}</td>
+            <td>{{ customer.lastname }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.mobileNumber }}</td>
+            <td>{{ customer.usersRole.userRoleName }}</td>
+            <td>{{ customer.isActive | active }}</td>
+            <td>
+              <a routerLink="/customerEdit/{{ customer.id }}"><i class="fa fa-pencil-square-o"></i></a> |
+              <a (click)="DeleteUser(customer.id)"
+                ><i class="fa fa-trash-o fa-fw"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li
+              class="page-item"
+              [ngClass]="{ disabled: !result.hasPreviousPage }"
+            >
+              <a class="page-link" (click)="previous()" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li
+              *ngFor="
+                let item of getArrayFromNumber(result.totalPages);
+                let i = index
+              "
+              class="page-item"
+              [ngClass]="{ active: isActive(i) }"
+            >
+              <a class="page-link" (click)="next(i)">{{ i + 1 }}</a>
+            </li>
+            <li class="page-item" [ngClass]="{ disabled: !result.hasNextPage }">
+              <a class="page-link" (click)="nextRecord()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </table>
+    </div>
+    <div class="text-danger">{{ errorMessage }}</div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        {{pageTitle}}
+      </div>
+      <div class="row" *ngFor="let s of saloonAppointment">
+        <div class="col-sm-3" *ngFor="let slot of s.slots">             
+            <div class="card-body">
+              <h5 class="card-title">{{s.doctorName}}</h5>
+              <p class="card-text">{{s.saloonName}}</p>
+              <p class="card-text">StartTime: {{slot.startHour}} <br>EndTime: {{slot.endHour}}</p>
+              <button (click)="BookAppointmentSlot(s.doctorId,s.saloonId,slot.startHour,slot.endHour)"
+              class="btn btn-primary" *ngIf="slot.isOccupied == false; else other_content">Book Now</button>
+            </div>  
+            <ng-template #other_content>
+              <button class="btn btn-primary" disabled="true">Occupied</button></ng-template>         
+        </div>
+      </div>
+      <div class="text-danger">{{ errorMessage }}</div>
+    </div>
+</div>

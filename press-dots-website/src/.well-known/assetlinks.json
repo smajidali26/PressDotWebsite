@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "com.pressdots.app",
+                 "sha256_cert_fingerprints": ["7B:8F:09:C1:ED:6B:3A:3C:F9:B3:7A:C6:86:69:23:DE:F4:52:C3:45:D8:14:68:CE:FC:6C:1E:EA:56:25:1D:5B"] }
+  }]

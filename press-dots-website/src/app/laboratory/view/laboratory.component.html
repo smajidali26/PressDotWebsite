@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="laboratoryForm" (ngSubmit)="onSubmit()">
+        <h3>Create laboratory</h3>
+        <br />
+        <div class="form-group">
+          <label>Laboratory name</label>
+          <input
+            [class.is-invalid]="labName.invalid && labName.touched"
+            formControlName="labName"
+            type="text"
+            class="form-control"
+          />
+          <div *ngIf="labName.invalid && labName.touched">
+            <small *ngIf="labName.errors?.required" class="text-danger"
+              >Laboratory name is required</small
+            >
+          </div>
+        </div>
+  
+        <div class="text-center">
+          <button
+            class="btn btn-primary mr-1"
+            [disabled]="!laboratoryForm.valid"
+            type="submit">
+            Save
+          </button>
+        </div>
+      </form>
+      <div class="text-danger">{{ errorMessage }}</div>
+    </div>
+  </div>
+  

@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        {{pageTitle}}
+      </div>
+      <form [formGroup]="searchSaloonForm" (ngSubmit)="onSubmit()">
+        <div class="card-body">
+          <div class="row">
+        <div class="form-group col-md-4">
+          <label>Country</label>
+          <select
+            class="form-control"
+            (change)="changeCountry($event)"
+            formControlName="country"
+          >
+            <option value="">Select Country</option>
+            <option *ngFor="let c of countryList" [ngValue]="c.id">
+              {{ c.locationName }}
+            </option>
+          </select>
+          <div *ngIf="country.invalid && country.touched">
+            <small *ngIf="country.errors?.required" class="text-danger"
+              >please select country</small
+            >
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label>City</label>
+          <br />
+          <select class="form-control" formControlName="city">
+            <option value="">Select City</option>
+            <option *ngFor="let city of cityList" [ngValue]="city.id">
+              {{ city.locationName }}
+            </option>
+          </select>
+          <div *ngIf="city.invalid && city.touched">
+            <small *ngIf="city.errors?.required" class="text-danger"
+              >please select city</small
+            >
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Date</label>
+          <div class="input-group">
+            <input class="form-control" readonly type="text"
+                   formControlName="datePicker" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="calendar fa fa-calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+          <div *ngIf="datePicker.invalid && datePicker.touched">
+            <small *ngIf="datePicker.errors?.required" class="text-danger"
+              >please select date</small
+            >
+          </div>
+        </div>
+          </div>
+        <div class="text-center">
+          <button
+            class="btn btn-primary mr-1"
+            [disabled]="!searchSaloonForm.valid"
+            type="submit">
+            Search
+          </button>
+          <button class="btn btn-secondary" type="reset" (click)="onReset()">
+            Reset
+          </button>
+        </div>   
+        </div>     
+      </form>
+    </div>   
+    <div class="card">  
+      <div class="row">
+        <div class="col-sm-3" *ngFor="let s of saloons">
+            <div class="card-body">
+              <h5 class="card-title">{{ s.saloonName }}</h5>
+              <a routerLink="/getsaloonappointment/" [queryParams]="{id:s.id,date:dateString}" 
+              class="btn btn-primary">Book Appointment</a>
+            </div>
+        </div>
+      </div>
+  </div>
+  </div>

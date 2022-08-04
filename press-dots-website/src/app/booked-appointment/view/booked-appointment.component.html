@@ -1,0 +1,81 @@
+<div class="card">     
+    <div class="card-header">
+      {{ pageTitle }}
+    </div>
+    <div class="card-body">      
+      <div class="table-responsive">
+        
+        <table class="table" *ngIf="appointments && appointments.length">
+          <thead>
+            <tr>              
+              <th>Name</th>
+              <th>Saloon name</th>              
+              <th>Doctor name</th>
+              <!-- <th>Symptoms</th> -->
+              <th>Status</th>
+              <th>StartTime</th>
+              <th>EndTime</th>      
+              <th>Action</th>        
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let appointment of appointments">              
+              <td>{{ appointment.customer.firstname + ' ' + appointment.customer.lastname}}</td>              
+              <td>{{ appointment.saloon.saloonName }}</td>
+              <td>{{ appointment.doctor.firstname + ' ' + appointment.doctor.lastname }}</td>
+              <!-- <td>{{ appointment.symptoms }}</td> -->
+              <td>{{ appointment.state.value }}</td>
+              <td>{{ appointment.startTime }}</td>
+              <td>{{ appointment.endTime }}</td>              
+               <td class="page-item">
+                <a style="cursor: pointer;" *ngIf="appointment.state?.value == 'Pending'" (click)="action(appointment.id, 'Approved')"
+                ><i
+                  class="fa fa-check-square-o"
+                  title="Approved"
+                  aria-hidden="true"
+                ></i>
+              </a>
+              &nbsp;&nbsp;
+              <a style="cursor: pointer;" (click)="action(appointment.id, 'Reject')"
+                  ><i class="fa fa-times" title="Cancel" aria-hidden="true"></i
+                ></a>
+              </td>          
+            </tr>
+          </tbody>
+  
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li
+                class="page-item"
+                [ngClass]="{ disabled: !appointments.hasPreviousPage }"
+              >
+                <a class="page-link" (click)="previous()" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li
+                *ngFor="
+                  let item of getArrayFromNumber(appointments.totalPages);
+                  let i = index
+                "
+                class="page-item"
+                [ngClass]="{ active: isActive(i) }"
+              >
+                <a class="page-link" (click)="next(i)">{{ i + 1 }}</a>
+              </li>
+              <li
+                class="page-item"
+                [ngClass]="{ disabled: !appointments.hasNextPage }"
+              >
+                <a class="page-link" (click)="nextRecord()" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </table>
+      </div>
+      <div class="text-danger">{{ errorMessage }}</div>
+    </div>    
+  </div>
+  

@@ -1,0 +1,593 @@
+<div class="container-fluid">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button" role="tab" aria-controls="edit" aria-selected="true">Edit Saloon</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="dentist-tab" data-bs-toggle="tab" data-bs-target="#dentist" type="button" role="tab" aria-controls="dentist" aria-selected="false">Doctors</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="laboratory-tab" data-bs-toggle="tab" data-bs-target="#laboratory" type="button" role="tab" aria-controls="laboratory" aria-selected="false">Laboratories</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="saloon-admin-tab" data-bs-toggle="tab" data-bs-target="#saloonadmin" type="button" role="tab" aria-controls="saloon-admin" aria-selected="false">Saloon Administrators</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="edit-tab">
+
+      <div class="card">
+        
+        <form [formGroup]="saloonEditForm" (ngSubmit)="onSubmit()">
+          <div class="card-body">
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label>Saloon Name</label>
+                <input
+                  [class.is-invalid]="saloonName.invalid && saloonName.touched"
+                  formControlName="saloonName"
+                  type="text"
+                  class="form-control"
+                />
+                <div *ngIf="saloonName.invalid && saloonName.touched">
+                  <small *ngIf="saloonName.errors?.required" class="text-danger"
+                    >Saloon name is required</small
+                  >
+                  <small *ngIf="saloonName.errors?.minlength" class="text-danger"
+                    >Saloon name must be at least 3 character</small
+                  >
+                </div>
+              </div>
+              <div class="form-group col-md-5">
+                <label>Email</label>
+                <input formControlName="email" type="text" class="form-control" />
+                <div *ngIf="email.invalid && email.touched">
+                  <small *ngIf="email.errors?.required" class="text-danger"
+                    >Email is required</small
+                  >
+                  <small *ngIf="email.errors?.email" class="text-danger">
+                    Email must be a valid email address
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label>Phone</label>
+                <input formControlName="phone" type="text" class="form-control" />
+              </div>
+              <div class="form-group col-md-5">
+                <label>Address</label>
+                <input formControlName="address" type="text" class="form-control" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-5">
+                <label>Country</label>
+                <br />
+                <select
+                  class="form-control"
+                  (change)="changeCountry($event)"
+                  formControlName="country"
+                >
+                  <option value="">Select Country</option>
+                  <option *ngFor="let c of countryList" [ngValue]="c.id">
+                    {{ c.locationName }}
+                  </option>
+                </select>
+                <div *ngIf="country.invalid && country.touched">
+                  <small *ngIf="country.errors?.required" class="text-danger"
+                    >please select country</small
+                  >
+                </div>
+              </div>
+              <div class="form-group col-md-5">
+                <label>City</label>
+                <br />
+                <select class="form-control" formControlName="city">
+                  <option value="">Select City</option>
+                  <option *ngFor="let city of cityList" [ngValue]="city.id">
+                    {{ city.locationName }}
+                  </option>
+                </select>
+                <div *ngIf="city.invalid && city.touched">
+                  <small *ngIf="city.errors?.required" class="text-danger"
+                    >please select city</small
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div style="padding: 0px 0px 10px 15px">
+                <button
+                  class="btn btn-primary mr-1"
+                  [disabled]="!saloonEditForm.valid"
+                  type="submit"
+                >
+                  Update
+                </button>
+                <!-- <button class="btn btn-secondary" type="reset" (click)="onCancel()">
+              Cancel
+            </button> -->
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="text-danger">{{ errorMessage }}</div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="dentist" role="tabpanel" aria-labelledby="dentist-tab">
+      <div class="card">
+      
+        <form
+          [formGroup]="dentistAssociatedForm"
+          (ngSubmit)="onDentistAssociateSubmit()"
+        >
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label>Dentist</label>
+                  <br />
+                  <select class="form-control" formControlName="dentists">
+                    <option value="">Select Dentist</option>
+                    <option *ngFor="let c of dentistList" [ngValue]="c.id">
+                      {{ c.firstname }}{{ c.lastname }}
+                    </option>
+                  </select>
+                  <div *ngIf="dentists.invalid && dentists.touched">
+                    <small *ngIf="dentists.errors?.required" class="text-danger"
+                      >please select dentist</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Day</label>
+                  <br />
+                  <select class="form-control" formControlName="day">
+                    <option value="">Select Day</option>
+                    <option *ngFor="let c of dayList" [ngValue]="c.id">
+                      {{ c.day }}
+                    </option>
+                  </select>
+                  <div *ngIf="day.invalid && day.touched">
+                    <small *ngIf="day.errors?.required" class="text-danger"
+                      >please select day</small
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Start Time</label>
+                  <select
+                    class="form-control"
+                    style="padding-right: 5px"
+                    formControlName="startHour"
+                  >
+                    <option value="">Select Hour</option>
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                  </select>
+                  <div *ngIf="startHour.invalid && startHour.touched">
+                    <small *ngIf="startHour.errors?.required" class="text-danger"
+                      >please select hour</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <select
+                    class="form-control"
+                    style="padding-right: 5px"
+                    formControlName="startMins"
+                  >
+                    <option value="">Select Minutes</option>
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">55</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                  </select>
+                  <div *ngIf="startMins.invalid && startMins.touched">
+                    <small *ngIf="startMins.errors?.required" class="text-danger"
+                      >please select minutes</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>End Time</label>
+                  <select
+                    class="form-control"
+                    style="padding-right: 5px"
+                    formControlName="endHour"
+                  >
+                    <option value="">Select Hour</option>
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                  </select>
+                  <div *ngIf="endHour.invalid && endHour.touched">
+                    <small *ngIf="endHour.errors?.required" class="text-danger"
+                      >please select hour</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>&nbsp;</label>
+                  <select
+                    class="form-control"
+                    style="padding-right: 5px"
+                    formControlName="endMins"
+                  >
+                    <option value="">Select Minutes</option>
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">55</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                  </select>
+                  <div *ngIf="endMins.invalid && endMins.touched">
+                    <small *ngIf="endMins.errors?.required" class="text-danger"
+                      >please select minutes</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1" style="padding: 30px">
+                <button
+                  class="btn btn-secondary"
+                  [disabled]="!dentistAssociatedForm.valid"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table
+                class="table"
+                *ngIf="associatedDentitsList && associatedDentitsList.length"
+              >
+                <thead>
+                  <tr>
+                    <th>Dentist</th>
+                    <th>Day</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of associatedDentitsList">
+                    <td>{{ s.employeeName }}</td>
+                    <td>{{ s.dayName }}</td>
+                    <td>{{ s.startTime }}</td>
+                    <td>{{ s.endTime }}</td>
+                    <td>
+                      <a (click)="DeleteDentistAssociatedWithSaloon(s.id)"
+                        ><i class="fa fa-trash-o fa-fw"></i
+                      ></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-danger">{{ errorMessageAssociatedDentist }}</div>
+            <br />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="laboratory" role="tabpanel" aria-labelledby="laboratory-tab">
+      <div class="card">
+     
+        <form
+          [formGroup]="laboratoryAssociatedForm"
+          (ngSubmit)="onLaboratoryAssociateSubmit()"
+        >
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label>Default</label>
+                  <input
+                    type="checkbox"
+                    style="width: 20px; height: 20px"
+                    formControlName="isDefaultLaboratoryCheckBox"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Laboratory</label>
+                  <select class="form-control" formControlName="laboratories">
+                    <option value="">Select Laboratory</option>
+                    <option *ngFor="let c of laboratoryList" [ngValue]="c.id">
+                      {{ c.laboratoryName }}
+                    </option>
+                  </select>
+                  <div *ngIf="laboratories.invalid && laboratories.touched">
+                    <small *ngIf="laboratories.errors?.required" class="text-danger"
+                      >please select laboratory</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4" style="padding: 30px">
+                <button
+                  class="btn btn-secondary"
+                  [disabled]="!laboratoryAssociatedForm.valid"
+                >
+                  Add Laboratory
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table
+                class="table"
+                *ngIf="
+                  associatedLabortriesWithSaloon &&
+                  associatedLabortriesWithSaloon.length
+                "
+              >
+                <thead>
+                  <tr>
+                    <th>Laboratory</th>
+                    <th>Default</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of associatedLabortriesWithSaloon">
+                    <td>{{ s.laboratoryName }}</td>
+                    <td>{{ s.isDefault }}</td>
+                    <td>
+                      <a
+                        (click)="
+                          DeleteLabortoryAssociationWithSaloon(s.id)
+                        "
+                        ><i class="fa fa-trash-o fa-fw"></i
+                      ></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-danger">{{ errorMessageLaboratory }}</div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="saloonadmin" role="tabpanel" aria-labelledby="saloon-admin-tab">
+
+      <div class="card">
+       
+        <form
+          [formGroup]="SaloonAdminAssociatedForm"
+          (ngSubmit)="onSaloonAdminAssociateSubmit()"
+        >
+          <div class="card-body">
+            <div class="row">          
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Administrators</label>
+                  <select class="form-control" formControlName="saloonadmins">
+                    <option value="">Select Saloon Admin</option>
+                    <option *ngFor="let c of SaloonAdminList" [ngValue]="c.id">
+                      {{ c.firstname }}{{ c.lastname }}
+                    </option>
+                  </select>
+                  <div *ngIf="saloonadmins.invalid && saloonadmins.touched">
+                    <small *ngIf="saloonadmins.errors?.required" class="text-danger"
+                      >please select saloon administrator</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4" style="padding: 30px">
+                <button
+                  class="btn btn-secondary"
+                  [disabled]="!SaloonAdminAssociatedForm.valid"
+                >
+                  Add Saloon Administrator
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table" *ngIf="associatedSaloonAdmins && associatedSaloonAdmins.length">
+                <thead>
+                  <tr>
+                    <th>Saloon Administrator</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of associatedSaloonAdmins">
+                    <td> {{ s.employee.firstname }}{{ s.employee.lastname }}</td>
+                    <td>
+                      <a
+                        (click)="
+                          DeleteAssociationSaloonAdmin(s.id)
+                        "
+                        ><i class="fa fa-trash-o fa-fw"></i
+                      ></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-danger">{{ errorMessageSaloonAdmin }}</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+</div>

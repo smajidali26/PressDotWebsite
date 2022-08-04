@@ -1,0 +1,101 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      Edit Laboratory
+    </div>
+      <form [formGroup]="laboratoryEditForm" (ngSubmit)="onSubmit()">
+        <div class="card-body">
+          <div class="row"> 
+            <div class="col-md-3"> 
+        <div class="form-group">
+          <label>Laboratory name</label>
+          <input
+            [class.is-invalid]="labName.invalid && labName.touched"
+            formControlName="labName"
+            type="text"
+            class="form-control"
+          />
+          <div *ngIf="labName.invalid && labName.touched">
+            <small *ngIf="labName.errors?.required" class="text-danger"
+              >Laboratory name is required</small
+            >
+          </div>
+        </div>
+      </div>
+          </div>
+        <div class="row" style="padding-left: 15px">
+          <button
+            class="btn btn-primary mr-1"
+            [disabled]="!laboratoryEditForm.valid"
+            type="submit">
+            Update
+          </button>
+        </div>
+        </div>
+      </form>
+      <div class="text-danger">{{ errorMessage }}</div>
+  </div>
+  <div class="card" style="max-height: 550px; overflow-y: scroll">
+    <div class="card-header">
+      Associated Laboratory User
+    </div>
+    <form
+      [formGroup]="laboratoryUserAssociatedForm"
+      (ngSubmit)="onLaboratoryUserAssociatedSubmit()"
+    >
+      <div class="card-body">
+        <div class="row">          
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Laboratory Users</label>
+              <select class="form-control" formControlName="laboratoryUsers">
+                <option value="">Select User</option>
+                <option *ngFor="let c of LaboratoryUserList" [ngValue]="c.id">
+                  {{ c.firstname }}{{ c.lastname }}
+                </option>
+              </select>
+              <div *ngIf="laboratoryUsers.invalid && laboratoryUsers.touched">
+                <small *ngIf="laboratoryUsers.errors?.required" class="text-danger"
+                  >please select laboratory user</small
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" style="padding: 30px">
+            <button
+              class="btn btn-secondary"
+              [disabled]="!laboratoryUserAssociatedForm.valid"
+            >
+              Add Laboratory User
+            </button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table" *ngIf="associatedLaboratoryUsers && associatedLaboratoryUsers.length">           
+            <thead>
+              <tr>
+                <th>Laboratory User</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of associatedLaboratoryUsers">
+                <td> {{ s.user.firstname }}{{ s.user.lastname }}</td>
+                <td>
+                  <a
+                    (click)="
+                      DeleteLabortoryAssociationUser(s.id)
+                    "
+                    ><i class="fa fa-trash-o fa-fw"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-danger">{{ errorMessageLaboratoryUser }}</div>
+      </div>
+    </form>
+  </div>
+  </div>
+  

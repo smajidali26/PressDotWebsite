@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="addCityForm" (ngSubmit)="onSubmit()">
+        <h3>Location</h3>
+        <br />
+        <div class="form-group">                
+            <select class="form-control" formControlName="country" >
+              <option value="">Select country</option>
+              <option *ngFor="let country of countryList">{{
+                country.locationName
+              }}</option>
+            </select>
+            <div *ngIf="country.invalid && country.touched">
+              <small *ngIf="country.errors?.required" class="text-danger">please select country</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label>City</label>
+          <input
+            [class.is-invalid]="city.invalid && city.touched"
+            formControlName="city"
+            type="text"
+            class="form-control"
+          />
+          <div *ngIf="city.invalid && city.touched">
+            <small *ngIf="city.errors?.required" class="text-danger"
+              >city is required</small
+            >
+          </div>
+        </div>
+        <div class="text-center">
+          <button
+            class="btn btn-primary mr-1"
+            [disabled]="!addCityForm.valid"
+            type="submit">
+            Save
+          </button>
+        </div>        
+      </form>
+      <div class="text-danger">{{ errorMessage }}</div>
+    </div>
+</div>

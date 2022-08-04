@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <div class="col-md-6 offset-md-3">
+      <div class="text-danger">{{ errorMessage }}</div>
+    </div>
+    <div class="card-body">
+      <br />
+      <div class="row">
+        <div class="col-md-6"> 
+            <button class="btn btn-secondary" style="margin:5px;" (click)="addCountry()">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+                Add Country
+              </button>  
+              
+              <button class="btn btn-secondary" style="margin:5px;" (click)="addCity()">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  Add City
+                </button>
+              
+        </div>            
+    </div>    
+      <div class="table-responsive">
+        <table class="table" *ngIf="countries">
+          <thead>
+            <tr>              
+              <th>cities</th>
+              <!-- <th>Id</th> -->
+              <th>Location name</th>                         
+            </tr>
+          </thead>
+          <tbody *ngFor="let country of countries.data ; let i = index">
+            <tr >              
+              <td  > 
+                <a  *ngIf="!hideme[i]" (click)="showCityInfo(i,country.id)"> 
+                  <i class="fa fa-plus" aria-hidden="true"></i> </a> 
+                  <a  *ngIf="hideme[i]" (click)="hideme[i] = !hideme[i]">                      
+                    <i class="fa fa-minus" aria-hidden="true"></i></a> 
+              </td>
+              <!-- <td>{{ country.id}}</td>                             -->
+              <td>{{ country.locationName }}</td>                                                              
+            </tr>
+            <tr [hidden]="!hideme[i]" >                                                     
+                                  <td colspan="10" >                                               
+                                    <table class="table-stripped">                
+                                      <thead >                
+                                        <tr>
+                                          <!-- <th>Id</th>                   -->
+                                          <th>City name</th>                                                                     
+                                        </tr>               
+                                      </thead>                
+                                      <tbody>                
+                                        <tr *ngFor="let city of cityInformation[i]">                
+                                          <!-- <td>{{city.id}}</td> -->
+                                          <td>{{city.locationName}}</td>                                                                                 
+                                        </tr>                
+                                      </tbody>                
+                                    </table>                                                 
+                                  </td>  
+                                </tr>
+          </tbody>
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li
+                class="page-item"
+                [ngClass]="{ disabled: !countries.hasPreviousPage }"
+              >
+                <a class="page-link" (click)="previous()" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li
+                *ngFor="
+                  let item of getArrayFromNumber(countries.totalPages);
+                  let i = index
+                "
+                class="page-item"
+                [ngClass]="{ active: isActive(i) }"
+              >
+                <a class="page-link" (click)="next(i)">{{ i + 1 }}</a>
+              </li>
+              <li
+                class="page-item"
+                [ngClass]="{ disabled: !countries.hasNextPage }"
+              >
+                <a class="page-link" (click)="nextRecord()" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </table>
+      </div>
+    </div>   
+  </div>
+  
