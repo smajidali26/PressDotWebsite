@@ -20,3 +20,10 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Enterprise – MPN(60e494be-a497-4190-aa8d-33482f857aa8)'
+    appType: 'webApp'
+    WebAppName: 'dev-pressdot'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
