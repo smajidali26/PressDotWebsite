@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: '#{ApiUrl}#',
+  apiUrl: 'https://dev-pressdot-api.azurewebsites.net/api/v1/',
 };
