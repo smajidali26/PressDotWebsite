@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl:'https://dev-pressdots-api.azurewebsites.net/api/v1/'
+  apiUrl:'https://dev-pressdot-api.azurewebsites.net/api/v1/'
 };
 
 /*
