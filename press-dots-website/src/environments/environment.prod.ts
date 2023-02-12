@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: '#{ApiUrl}#',
+  apiUrl: 'http://pressdot-api.dare2care.pk/api/v1/',
 };

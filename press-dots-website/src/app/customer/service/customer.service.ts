@@ -11,7 +11,6 @@ import { tap, catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { TokenManagerService } from 'src/app/shared/service/TokenManagerService';
 import { IPagedDataView } from '../../shared/view/IPagedDataView';
-import { isNull, isNullOrUndefined } from 'util';
 
 @Injectable({
   providedIn: 'root',
