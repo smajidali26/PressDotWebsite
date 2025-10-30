@@ -150,7 +150,6 @@
       }
     }
   },
-  "defaultProject": "press-dots-website",
   "cli": {
     "analytics": false,
     "schematicCollections": [
