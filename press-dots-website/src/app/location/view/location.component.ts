@@ -9,7 +9,8 @@ import { IPagedDataView } from 'src/app/shared/view/IPagedDataView';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './location.component.html',
+    templateUrl: './location.component.html',
+    standalone: false
 })
 
 export class LocationComponent implements OnInit {

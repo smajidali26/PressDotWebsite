@@ -5,9 +5,10 @@ import { BookedAppointmentsService } from '../service/bookedappointments.service
 import { StateService } from 'src/app/shared/service/stateService';
 
 @Component({
-  selector: 'app-booked-appointment',
-  templateUrl: './booked-appointment.component.html',
-  styleUrls: ['./booked-appointment.component.css']
+    selector: 'app-booked-appointment',
+    templateUrl: './booked-appointment.component.html',
+    styleUrls: ['./booked-appointment.component.css'],
+    standalone: false
 })
 export class BookedAppointmentComponent implements OnInit {
 

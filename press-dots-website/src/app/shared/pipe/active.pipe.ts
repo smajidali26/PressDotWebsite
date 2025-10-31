@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'active'
+    name: 'active',
+    standalone: false
 })
 export class ActivePipe implements PipeTransform {
      transform(value: boolean): string {

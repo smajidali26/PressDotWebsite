@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { TokenManagerService } from '../shared/service/TokenManagerService';
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css']
+    selector: 'app-welcome',
+    templateUrl: './welcome.component.html',
+    styleUrls: ['./welcome.component.css'],
+    standalone: false
 })
 export class WelcomeComponent implements OnInit {
   constructor(

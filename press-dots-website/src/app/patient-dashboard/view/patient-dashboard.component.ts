@@ -6,8 +6,9 @@ import { Router } from '@angular/router';
 import { StateService } from 'src/app/shared/service/stateService';
 
 
-@Component({  
-  templateUrl: './patient-dashboard.component.html',  
+@Component({
+    templateUrl: './patient-dashboard.component.html',
+    standalone: false
 })
 export class PatientDashboardComponent implements OnInit {
   constructor(             

@@ -7,7 +7,8 @@ import { ICountry } from '../../saloon/model/country';
 import { ICity } from '../../saloon/model/city';
 import { TokenManagerService } from 'src/app/shared/service/TokenManagerService';
 @Component({
-  templateUrl: './create-appointment.component.html',
+    templateUrl: './create-appointment.component.html',
+    standalone: false
 })
 export class CreateAppointmentComponent implements OnInit {
   constructor(

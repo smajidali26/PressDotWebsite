@@ -6,7 +6,8 @@ import { ChangePasswordService } from '../service/changepassword.service';
 import { TokenManagerService } from 'src/app/shared/service/TokenManagerService';
 
 @Component({
-  templateUrl: './change-password.component.html',
+    templateUrl: './change-password.component.html',
+    standalone: false
 })
 export class ChangePasswordComponent implements OnInit {
   constructor(

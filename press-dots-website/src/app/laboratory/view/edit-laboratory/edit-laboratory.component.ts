@@ -6,9 +6,10 @@ import { AddLaboratoryUser, laboratory, UpdateLaboratoryRequest } from '../../mo
 import { LaboratoryService } from '../../service/laboratory.service';
 
 @Component({
-  selector: 'app-edit-laboratory',
-  templateUrl: './edit-laboratory.component.html',
-  styleUrls: ['./edit-laboratory.component.css']
+    selector: 'app-edit-laboratory',
+    templateUrl: './edit-laboratory.component.html',
+    styleUrls: ['./edit-laboratory.component.css'],
+    standalone: false
 })
 export class EditLaboratoryComponent implements OnInit {
 

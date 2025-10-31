@@ -7,9 +7,10 @@ import { signInModel } from '../model/signin';
 import { TokenManagerService } from 'src/app/shared/service/TokenManagerService';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css'],
+    selector: 'app-signin',
+    templateUrl: './signin.component.html',
+    styleUrls: ['./signin.component.css'],
+    standalone: false
 })
 export class SigninComponent implements OnInit {
   constructor(

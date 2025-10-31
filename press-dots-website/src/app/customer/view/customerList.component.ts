@@ -5,9 +5,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IPagedDataView } from 'src/app/shared/view/IPagedDataView';
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customerList.component.html',
-  styleUrls: ['./customerList.component.css'],
+    selector: 'app-customer',
+    templateUrl: './customerList.component.html',
+    styleUrls: ['./customerList.component.css'],
+    standalone: false
 })
 export class CustomerListComponent implements OnInit {
   constructor(

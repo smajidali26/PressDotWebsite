@@ -8,7 +8,8 @@ import { LocationService } from 'src/app/shared/service/locationService';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './add-country.component.html',
+    templateUrl: './add-country.component.html',
+    standalone: false
 })
 export class AddCountryComponent implements OnInit {      
   countryList: ICountry[]; 

@@ -4,8 +4,9 @@ import { IPagedDataView } from 'src/app/shared/view/IPagedDataView';
 import { ILaboratoryView } from '../model/laboratory';
 import { LaboratoryService } from '../service/laboratory.service';
 
-@Component({  
-  templateUrl: './laboratory-list.component.html',  
+@Component({
+    templateUrl: './laboratory-list.component.html',
+    standalone: false
 })
 export class LaboratoryListComponent implements OnInit {
   constructor(    

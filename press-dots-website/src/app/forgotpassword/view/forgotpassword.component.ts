@@ -4,9 +4,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ForgotPasswordService } from '../service/forgotpassword.service';
 
 @Component({
-  selector: 'app-forgotpassword',
-  templateUrl: './forgotpassword.component.html',
-  styleUrls: ['./forgotpassword.component.css'],
+    selector: 'app-forgotpassword',
+    templateUrl: './forgotpassword.component.html',
+    styleUrls: ['./forgotpassword.component.css'],
+    standalone: false
 })
 export class ForgotpasswordComponent implements OnInit {
   constructor(

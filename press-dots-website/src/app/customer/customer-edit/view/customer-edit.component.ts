@@ -7,9 +7,10 @@ import { TokenManagerService } from 'src/app/shared/service/TokenManagerService'
 import { CustomerUpdateRequest } from '../../model/customer';
 import { CustomerService } from '../../service/customer.service';
 
-@Component({    
-    templateUrl: './customer-edit.component.html',    
-  })
+@Component({
+    templateUrl: './customer-edit.component.html',
+    standalone: false
+})
 export class CustomerEditComponent implements OnInit{
     constructor(
         private fb: FormBuilder,

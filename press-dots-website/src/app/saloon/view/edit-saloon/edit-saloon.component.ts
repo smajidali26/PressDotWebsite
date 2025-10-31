@@ -15,9 +15,10 @@ import { saloonEmployeeCreateRequest } from 'src/app/employeeSaloon/model/saloon
 import { SaloonEmployeeService } from 'src/app/employeeSaloon/employeeSaloon.service';
 
 @Component({
-  selector: 'app-edit-saloon',
-  templateUrl: './edit-saloon.component.html',
-  styleUrls: ['./edit-saloon.component.css'],
+    selector: 'app-edit-saloon',
+    templateUrl: './edit-saloon.component.html',
+    styleUrls: ['./edit-saloon.component.css'],
+    standalone: false
 })
 export class EditSaloonComponent implements OnInit {
   countryList: ICountry[];

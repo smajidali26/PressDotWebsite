@@ -7,9 +7,10 @@ import { saloonCreateRequest } from '../model/saloon';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-saloon',
-  templateUrl: './saloon.component.html',
-  styleUrls: ['./saloon.component.css'],
+    selector: 'app-saloon',
+    templateUrl: './saloon.component.html',
+    styleUrls: ['./saloon.component.css'],
+    standalone: false
 })
 export class SaloonComponent implements OnInit {
   countryList: ICountry[];

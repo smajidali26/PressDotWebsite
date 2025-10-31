@@ -4,9 +4,10 @@ import { Location } from '@angular/common';
 import { TokenManagerService } from './shared/service/TokenManagerService';
 
 @Component({
-  selector: 'pd-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'pd-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   pageTitle = 'PressDots Website';

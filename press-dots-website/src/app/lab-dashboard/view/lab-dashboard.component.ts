@@ -4,8 +4,9 @@ import { FormGroup } from '@angular/forms';
 import { TokenManagerService } from 'src/app/shared/service/TokenManagerService';
 import { LabOrderService } from '../service/lab-orders.service';
 
-@Component({  
-  templateUrl: './lab-dashboard.component.html',  
+@Component({
+    templateUrl: './lab-dashboard.component.html',
+    standalone: false
 })
 export class LabDashboardComponent implements OnInit {
   constructor(             

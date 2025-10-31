@@ -4,9 +4,10 @@ import { SaloonService } from '../../service/saloon.service';
 import { ISaloonView } from '../../model/saloonView';
 
 @Component({
-  selector: 'app-saloon-list',
-  templateUrl: './saloon-list.component.html',
-  styleUrls: ['./saloon-list.component.css'],
+    selector: 'app-saloon-list',
+    templateUrl: './saloon-list.component.html',
+    styleUrls: ['./saloon-list.component.css'],
+    standalone: false
 })
 export class SaloonListComponent implements OnInit {
   constructor(private router: Router, private _saloonService: SaloonService) {}

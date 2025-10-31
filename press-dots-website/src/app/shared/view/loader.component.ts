@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoaderService } from '../service/loader.service';
 
 @Component({
-  selector: 'pd-loader',
-  templateUrl: './loader.component.html'
+    selector: 'pd-loader',
+    templateUrl: './loader.component.html',
+    standalone: false
 })
 export class LoaderComponent implements OnInit {
 

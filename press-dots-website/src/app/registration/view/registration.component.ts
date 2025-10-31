@@ -20,9 +20,10 @@ import { SaloonEmployeeService } from 'src/app/employeeSaloon/employeeSaloon.ser
 import { saloonEmployeeCreateRequest } from 'src/app/employeeSaloon/model/saloonEmployee';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css'],
+    selector: 'app-registration',
+    templateUrl: './registration.component.html',
+    styleUrls: ['./registration.component.css'],
+    standalone: false
 })
 export class RegistrationComponent implements OnInit {
   roleList: IRoles[];

@@ -4,8 +4,9 @@ import { TokenManagerService } from 'src/app/shared/service/TokenManagerService'
 import { IPagedDataView } from 'src/app/shared/view/IPagedDataView';
 import { OrderService } from '../service/order.service';
 
-@Component({  
-  templateUrl: './view-order.component.html',  
+@Component({
+    templateUrl: './view-order.component.html',
+    standalone: false
 })
 export class ViewOrderComponent implements OnInit {
   constructor(    

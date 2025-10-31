@@ -8,8 +8,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TokenManagerService } from 'src/app/shared/service/TokenManagerService';
 import { StateService } from 'src/app/shared/service/stateService';
 
-@Component({  
-  templateUrl: './dentist-dashboard.component.html',  
+@Component({
+    templateUrl: './dentist-dashboard.component.html',
+    standalone: false
 })
 export class DentistDashboardComponent implements OnInit {
   constructor(       

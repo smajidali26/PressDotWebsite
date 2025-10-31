@@ -5,7 +5,8 @@ import { LaboratoryService } from '../service/laboratory.service';
 import { createLaboratoryRequest } from '../model/laboratory';
 
 @Component({
-  templateUrl: './laboratory.component.html',
+    templateUrl: './laboratory.component.html',
+    standalone: false
 })
 export class LaboratoryComponent implements OnInit {
   constructor(

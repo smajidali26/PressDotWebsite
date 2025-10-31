@@ -7,9 +7,10 @@ import { ICountry } from '../../model/country';
 import { SaloonService } from '../../service/saloon.service';
 
 @Component({
-  selector: 'app-search-saloon',
-  templateUrl: './search-saloon.component.html',
-  styleUrls: ['./search-saloon.component.css']
+    selector: 'app-search-saloon',
+    templateUrl: './search-saloon.component.html',
+    styleUrls: ['./search-saloon.component.css'],
+    standalone: false
 })
 export class SearchSaloonComponent implements OnInit {
 

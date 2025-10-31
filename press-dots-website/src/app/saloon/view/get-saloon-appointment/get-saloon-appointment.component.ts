@@ -5,9 +5,10 @@ import { createAppointmentRequest } from '../../model/appointment';
 import { SaloonService } from '../../service/saloon.service';
 
 @Component({
-  selector: 'app-get-saloon-appointment',
-  templateUrl: './get-saloon-appointment.component.html',
-  styleUrls: ['./get-saloon-appointment.component.css']
+    selector: 'app-get-saloon-appointment',
+    templateUrl: './get-saloon-appointment.component.html',
+    styleUrls: ['./get-saloon-appointment.component.css'],
+    standalone: false
 })
 export class GetSaloonAppointmentComponent implements OnInit {
 

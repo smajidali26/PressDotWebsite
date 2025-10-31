@@ -3,9 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ActivateService } from '../service/activate.service';
 
 @Component({
-  selector: 'app-activate',
-  templateUrl: './activate.component.html',
-  styleUrls: ['./activate.component.css'],
+    selector: 'app-activate',
+    templateUrl: './activate.component.html',
+    styleUrls: ['./activate.component.css'],
+    standalone: false
 })
 export class ActivateComponent implements OnInit {
   constructor(
