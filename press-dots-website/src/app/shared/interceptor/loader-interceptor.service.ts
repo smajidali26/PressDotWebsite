@@ -1,12 +1,6 @@
 // loader-interceptor.service.ts
 import { Injectable } from '@angular/core';
-import {
-  HttpResponse,
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import { HttpResponse, HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoaderService } from '../service/loader.service';
 
