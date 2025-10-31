@@ -94,18 +94,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "press-dots-website:build"
+            "buildTarget": "press-dots-website:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "press-dots-website:build:production"
+              "buildTarget": "press-dots-website:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "press-dots-website:build"
+            "buildTarget": "press-dots-website:build"
           }
         },
         "test": {
